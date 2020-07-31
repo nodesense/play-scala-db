@@ -13,7 +13,7 @@ class HelloActor extends  Actor {
     case SayHello(name: String) => {
       println("Received hello ", name)
       // not responding back
-      //sender() ! s"Howdy, $name"
+      sender() ! s"Howdy, $name"
     }
     case _ => "I won't say hello"
   }
