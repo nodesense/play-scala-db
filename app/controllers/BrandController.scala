@@ -18,9 +18,8 @@ import slick.driver.JdbcProfile
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success}
 import scala.concurrent.ExecutionContext
-
 import scala.concurrent.duration._
-import akka.pattern.ask
+import akka.pattern.{AskTimeoutException, ask}
 import akka.util.Timeout
 
 // Play, by default, there is one actor system initialized
@@ -48,7 +47,11 @@ class BrandController @Inject() (repo: BrandRepository,
     (helloActor ? SayHello(name))
                 .mapTo[String]
                 .map { message =>
-                Ok(message)
+                  Ok(message)
+                }
+              .recover {
+                case to: AskTimeoutException => Status(500) ("Timeout from actor " + to.getMessage)
+                case e => Status(500) ("Unknown error" + e.getMessage)
               }
   })
 

@@ -10,7 +10,11 @@ class HelloActor extends  Actor {
     // this actor respond back to the sender
     // for the ask query
     // ! means tell another actor, fire and forget
-    case SayHello(name: String) => sender() ! s"Howdy, $name"
+    case SayHello(name: String) => {
+      println("Received hello ", name)
+      // not responding back
+      //sender() ! s"Howdy, $name"
+    }
     case _ => "I won't say hello"
   }
 }
