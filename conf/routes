@@ -1,0 +1,54 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# https://www.playframework.com/documentation/latest/ScalaRouting
+# ~~~~
+
+# An example controller showing a sample home page
+GET     /                           controllers.HomeController.index
+GET     /page1                      controllers.HomeController.page1
+# redirect to page1
+GET     /page2                      controllers.HomeController.page2
+
+GET     /page4                      controllers.HomeController.page4
+
+GET     /crash                      controllers.HomeController.crash
+GET     /statusCode                 controllers.HomeController.statusCode
+GET     /result                     controllers.HomeController.result
+GET     /comingSoon                 controllers.HomeController.comingSoon
+
+GET     /page/:id                   controllers.HomeController.servePage(id: String)
+
+# /search/page?q=iphone&limit=20
+
+GET      /search/page                controllers.HomeController.searchPageByName(q: Option[String])
+
+# /query?q=mobile&skip=2&limit=100
+
+GET      /query                      controllers.HomeController.genericQuery
+
+GET     /getStock/:id                     controllers.StockController.getStock(id: String)
+
+#DELETE     /deleteStock/:id           controllers.StockController.deleteStock(id: String)
+GET     /getStocks                    controllers.StockController.getStocks
+
+POST     /createStock                    controllers.StockController.createStock
+
+
+GET    /getProduct/:id                    controllers.ProductController.getProduct(id: String)
+
+GET    /getProducts                    controllers.ProductController.getProducts
+
+POST    /createProduct                    controllers.ProductController.createProduct
+
+GET    /getBrand/:id                    controllers.BrandController.getBrand(id: Long)
+
+#DELETE    /deleteBrand/:id                    controllers.BrandController.deleteBrand(id: Long)
+
+#GET    /getBrands                    controllers.BrandController.getBrands
+
+#POST    /createBrand                    controllers.BrandController.createBrand
+
+->         /v1/posts               v1.post.PostRouter
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
