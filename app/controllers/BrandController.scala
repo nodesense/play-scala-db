@@ -5,7 +5,7 @@ import java.util.NoSuchElementException
 
 import akka.actor.ActorSystem
 import javax.inject.{Inject, Singleton}
-import models.{Brand, BrandRepository}
+import models.{Brand, BrandForm, BrandRepository}
 import play.api.db.slick.DbName
 import play.api.libs.functional.syntax.unlift
 import play.api.libs.json.{JsPath, Json, Writes}
@@ -33,6 +33,45 @@ class BrandController @Inject() (repo: BrandRepository,
           case _ => BadRequest
         }
   })
+
+    def getBrands = Action.async { implicit request =>
+      repo.list().map { brands =>
+        Ok(Json.toJson(brands))
+      }
+        .recover {
+          case e => InternalServerError(e.getMessage)
+          // add as many typed exceptions handling
+          case _ => BadRequest
+        }
+    }
+
+    def deleteBrand(id: Long) = Action.async { implicit request =>
+      repo.delete(id).map { _ =>
+        Ok("")
+      }
+        .recover {
+          case e => InternalServerError(e.getMessage)
+          case _ => BadRequest
+        }
+    }
+
+    // the body of request is overwritten with
+    // Brand pojo instance
+    def createBrand() = Action.async(parse.json[BrandForm]) {
+      implicit request => {
+        println("request", request.body)
+
+        val requestBrand: BrandForm = request.body
+        repo.create(requestBrand.name, requestBrand.year)
+          .map (brand => Ok(Json.toJson(brand))) // success 200 OK
+          .recover {
+            case _ => InternalServerError
+          }
+
+        // Ok("done " + request.body.name)
+      }
+    }
+
 
 }
 //
@@ -62,11 +101,7 @@ class BrandController @Inject() (repo: BrandRepository,
 //
 //
 //
-//  def getBrands = Action.async { implicit request =>
-//    repo.list().map { brands =>
-//      Ok(Json.toJson(brands))
-//    }
-//  }
+
 //
 //  def createBrand() = Action(parse.json[Brand]) {
 //    implicit request => {

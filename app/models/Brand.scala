@@ -6,6 +6,13 @@ import play.api.libs.functional.syntax._
 
 case class Brand(id: Long, name: String, year: Int);
 
+case class BrandForm(name: String, year: Int);
+
+object BrandForm {
+  implicit val brandFormat = Json.format[BrandForm]
+
+}
+
 object Brand {
   // composable Writes/Reads
 

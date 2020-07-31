@@ -42,11 +42,11 @@ POST    /createProduct                    controllers.ProductController.createPr
 
 GET    /getBrand/:id                    controllers.BrandController.getBrand(id: Long)
 
-#DELETE    /deleteBrand/:id                    controllers.BrandController.deleteBrand(id: Long)
+DELETE    /deleteBrand/:id                    controllers.BrandController.deleteBrand(id: Long)
 
-#GET    /getBrands                    controllers.BrandController.getBrands
+GET    /getBrands                    controllers.BrandController.getBrands
 
-#POST    /createBrand                    controllers.BrandController.createBrand
+POST    /createBrand                    controllers.BrandController.createBrand
 
 ->         /v1/posts               v1.post.PostRouter
 

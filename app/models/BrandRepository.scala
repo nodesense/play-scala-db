@@ -90,6 +90,8 @@ class BrandRepository @Inject() (dbConfigProvider: DatabaseConfigProvider)(impli
 
   def delete(id: Long): Future[Int] =
     db.run {
+      // delete from brands where id=1234
+      //FIXME:  AND OR Not
       brandTable.filter(_.id === id).delete
     }
  }
