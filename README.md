@@ -100,3 +100,5 @@ how to extend ActionBuilder
 how to extend the context
 how to extend modules
 hwo to use actors
+
+/v1/reviews --> ReviewRouter -> ReviewController -> index -> Request Handler -> Repository -> DB

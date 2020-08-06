@@ -24,6 +24,8 @@ trait ReviewRepository {
 
   def get(id: Int)(implicit mc: MarkerContext): Future[Option[Review]]
   def findById(id: Int): Future[Review]
+
+  def create(id: Int, title: String, body: String): Future[Review]
 }
 
 /**
@@ -119,7 +121,7 @@ class ReviewRepositoryImpl @Inject()(dbConfigProvider: DatabaseConfigProvider)(i
    * This is an asynchronous operation, it will return a future of the created review, which can be used to obtain the
    * id for that review.
    */
-  def create(id: Int, title: String, body: String): Future[Review] = db.run {
+  override def create(id: Int, title: String, body: String): Future[Review] = db.run {
     (reviewTable.map(p => (p.title, p.body))
       returning reviewTable.map(_.id)
       into ((reviewTuple, id) => Review(id, reviewTuple._1, reviewTuple._2))

@@ -14,6 +14,7 @@ import play.api.routing.sird._
 class ReviewRouter @Inject()(controller: ReviewController) extends SimpleRouter {
   val prefix = "/v1/reviews"
 
+  // /v1/reviews/1234
   def link(id: Int): String = {
     import io.lemonlabs.uri.dsl._
     val url = prefix / id.toString

@@ -32,6 +32,8 @@ class ReviewController @Inject()(cc: ReviewControllerComponents)(
     )
   }
 
+  // /v1/reviews
+  // GET /v1/reviews
   def index: Action[AnyContent] = ReviewAction.async { implicit request =>
     logger.trace("index: ")
     reviewResourceHandler.find.map { reviews =>
@@ -39,8 +41,16 @@ class ReviewController @Inject()(cc: ReviewControllerComponents)(
     }
   }
 
+  // POST /v1/reviews
+
+  // http://localhost:9000/v1/reviews
+  // {  "title": "Product 5 is too good",      "body": "all good" }
+
   def process: Action[AnyContent] = ReviewAction.async { implicit request =>
     logger.trace("process: ")
+    // we don't pass the request object
+    // SCALA compiler sees implicit request => which is Request object
+    // SCALA compiler  also processJsonReview method, it has implicit for type Request
     processJsonReview()
   }
 
@@ -54,16 +64,21 @@ class ReviewController @Inject()(cc: ReviewControllerComponents)(
 
   private def processJsonReview[A]()(
     implicit request: ReviewRequest[A]): Future[Result] = {
+    // helper method, you call whaterver name you want
+    // fold higher order fucntion, call failure if json form is wrong
     def failure(badForm: Form[ReviewFormInput]) = {
       Future.successful(BadRequest(badForm.errorsAsJson))
     }
 
+    // helper method, you call whaterver name you want
+    // fold higher order fucntion, call success if json form is alright
     def success(input: ReviewFormInput) = {
       reviewResourceHandler.create(input).map { review =>
         Created(Json.toJson(review)).withHeaders(LOCATION -> review.link)
       }
     }
 
+    // form will contain {title, body}, shall bind ReviewForm
     form.bindFromRequest().fold(failure, success)
   }
 }
