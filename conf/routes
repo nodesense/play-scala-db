@@ -55,7 +55,9 @@ GET    /getBrands                    controllers.BrandController.getBrands
 
 POST    /createBrand                    controllers.BrandController.createBrand
 
-GET /sayHello/:name                          controllers.BrandController.sayHello(name: String)
+GET /sayHello/:name                          controllers.ActorController.sayHello(name: String)
+GET /getConfig                          controllers.ActorController.getConfig
+GET /getConfigParent                          controllers.ActorController.getConfigParent
 
 ->         /v1/reviews               v1.review.ReviewRouter
 

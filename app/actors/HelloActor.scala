@@ -1,11 +1,13 @@
 package actors
 
 import akka.actor._
+import javax.inject.Inject
+import repositories.ProductRepository
 
 case class SayHello(name: String)
 // untyped actor, receive any messages, no compilation error
 // if message not processed, it goes to case _, may be unnoticed
-class HelloActor extends  Actor {
+class HelloActor  extends  Actor {
   def receive = {
     // this actor respond back to the sender
     // for the ask query
