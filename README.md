@@ -49,3 +49,46 @@ drop table "products" if exists;
 }
 
 ```
+
+
+MODULE
+    Helpers for DI
+    Configuration for the application
+    
+FILTERS
+    API hooks
+    Custom
+    +
+    CORS filter
+    
+ACTORS
+    with DI
+    Forword
+    Reply
+    Send
+    
+DB
+    And/OR
+    Pagination
+    
+Router
+    base URL
+    Request Handler for router
+    Custom Execution Context - to help DI
+    /v1/reviews    
+    
+    RESTFUL APIS with pattern
+    
+    get all reviews
+    GET /v1/reviews
+    get single review
+    GET /v1/reviews/23
+        
+     POST create review
+     POST /v1/reviews
+     
+     DELETE create review
+     DELETE /v1/reviews/23
+     
+ERROR HANDLER
+Module

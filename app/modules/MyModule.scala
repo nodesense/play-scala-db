@@ -10,10 +10,7 @@ class MyModule extends AbstractModule with AkkaGuiceSupport {
   override def configure = {
     bindActor[ConfiguredActor]("configured-actor")
     bindActor[ParentActor]("parent-actor")
-
-   bindActorFactory[ConfiguredChildActor, ConfiguredChildActor.Factory]
-
+    bindActorFactory[ConfiguredChildActor, ConfiguredChildActor.Factory]
     println("****configured-actor")
-
   }
 }
