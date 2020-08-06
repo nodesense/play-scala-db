@@ -55,6 +55,10 @@ class BrandController @Inject() (repo: BrandRepository,
               }
   })
 
+  // Action returns Result object Ok("")
+  // Action.async returns Future of Result object
+  ///Action.async  => future { Ok("done")}
+
   def getBrand(id: Long) = Action.async({ implicit  request =>
        repo.findById(id)
         .map (brand => Ok(Json.toJson(brand))) // success 200 OK

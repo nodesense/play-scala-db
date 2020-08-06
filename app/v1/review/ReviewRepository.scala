@@ -1,6 +1,6 @@
 package v1.review
 
-import javax.inject.{Inject, Singleton}
+import javax.inject.{Inject, Singleton, Provider}
 import akka.actor.ActorSystem
 import models.{Review}
 import play.api.db.slick.DatabaseConfigProvider

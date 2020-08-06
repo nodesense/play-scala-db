@@ -91,6 +91,7 @@ class HomeController @Inject()(loggingAction: LoggingAction,
       Ok(s"query $q, skip $skip, limit $limit")
   }
 
+  // custom, cross cuttin concerns
   def logAction = loggingAction {
     Ok("Hello World")
   }

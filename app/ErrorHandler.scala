@@ -76,6 +76,7 @@ class ErrorHandler(environment: Environment,
   override protected def onProdServerError(
                                             request: RequestHeader,
                                             exception: UsefulException): Future[Result] = {
+    // log the exception
     Future.successful(InternalServerError)
   }
 }

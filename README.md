@@ -102,3 +102,13 @@ how to extend modules
 hwo to use actors
 
 /v1/reviews --> ReviewRouter -> ReviewController -> index -> Request Handler -> Repository -> DB
+
+
+// QUESTIONS?
+// want code example?
+// Provider Annotation : 
+//   Provider
+    @Inject() 
+      product: Provider[Product]
+      // spring/Stephen
+      
