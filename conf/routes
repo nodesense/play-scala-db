@@ -16,7 +16,14 @@ GET     /statusCode                 controllers.HomeController.statusCode
 GET     /result                     controllers.HomeController.result
 GET     /comingSoon                 controllers.HomeController.comingSoon
 
+GET     /logAction                 controllers.HomeController.logAction
+POST     /submit                    controllers.HomeController.submit
+POST     /checkout                  controllers.CheckoutController.checkout
 GET     /page/:id                   controllers.HomeController.servePage(id: String)
+
+GET     /products/findAll/:brandId/:price/:offset/:limit             controllers.ProductController.filterProducts(brandId: Long, price: Int,  offset: Int, limit: Int )
+GET     /products/paginatedProducts/:brandId/:price/:offset/:limit             controllers.ProductController.paginatedProducts(brandId: Long, price: Int,  offset: Int, limit: Int )
+
 
 # /search/page?q=iphone&limit=20
 
@@ -50,7 +57,7 @@ POST    /createBrand                    controllers.BrandController.createBrand
 
 GET /sayHello/:name                          controllers.BrandController.sayHello(name: String)
 
-->         /v1/posts               v1.post.PostRouter
+->         /v1/reviews               v1.review.ReviewRouter
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

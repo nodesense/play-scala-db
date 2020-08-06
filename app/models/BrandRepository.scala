@@ -77,6 +77,18 @@ class BrandRepository @Inject() (dbConfigProvider: DatabaseConfigProvider)(impli
   def list(): Future[Seq[Brand]] = db.run {
     brandTable.result
   }
+//
+//  query.filter {
+//    m => conditions.map(n => m._13 === n._1 && m._14 === n._2).reduceLeft(_ || _)
+//  }
+
+  def query(): Future[Seq[Brand]] = db.run {
+    brandTable.result
+  }
+//
+//  def findAll(userId: Long, limit: Int, offset: Int) = db.run{
+//    brandTable.filter(_.id === userId).drop(offset).take(limit).result
+//  }
 
   def findById(id: Long): Future[Brand] = db.run {
     brandTable.filter(_.id === id).result.head

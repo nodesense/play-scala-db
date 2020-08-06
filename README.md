@@ -28,3 +28,24 @@ insert into "products" ("id", "name",  "price", "brand_id") values (5, 'Product 
 
 drop table "products" if exists;
 
+
+```
+{
+    "id": 12343,
+    "customer": {
+        "id": 23,
+        "name": "Krish"
+    },
+    "items": [
+        {
+        "id": 1,
+        "qty": 5,
+        "price": 100,
+        "brand_id": 1,
+        "product_id": 1,
+        "order_id": 1,
+        "amount": 100
+    }]
+}
+
+```

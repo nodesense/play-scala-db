@@ -30,7 +30,6 @@ class StockController @Inject() (val controllerComponents: ControllerComponents)
     }
   }
 
-
   def getStocks() = Action {
     Ok(Json.toJson(stocks.toSeq))
   }
