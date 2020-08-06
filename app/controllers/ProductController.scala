@@ -31,10 +31,6 @@ class ProductController @Inject() (repo: ProductRepository, val controllerCompon
     Ok(Json.toJson(products))
   }
 
-
-
-
-
   //http://localhost:9000/products/findAll/1/1000/0/100
   def filterProducts(brand_id: Long, price: Int, offset: Int, skip: Int ) = Action.async { implicit request =>
     repo.findAll(brand_id, price, offset, skip).map { products =>
@@ -47,6 +43,8 @@ class ProductController @Inject() (repo: ProductRepository, val controllerCompon
       }
   }
 
+
+  //http://localhost:9000/products/paginatedProducts/1/200/0/10
   def paginatedProducts(brand_id: Long, price: Int, offset: Int, skip: Int ) = Action.async { implicit request =>
     repo.findAll2(brand_id, price, offset, skip).map { products =>
       Ok(Json.toJson(products))

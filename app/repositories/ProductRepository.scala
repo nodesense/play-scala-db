@@ -105,7 +105,19 @@ class ProductRepository @Inject() (dbConfigProvider: DatabaseConfigProvider)(imp
   }
 
   def  findAll(brandId: Long, price: Int,  offset: Int, limit: Int ): Future[Seq[Product]] = db.run{
-   productTable.filter( product => (product.brand_id  === brandId && product.price > price)).result
+    //productTable.result
+    // productTable.filter( product => (product.brand_id === brandId)).result
+    // and &&
+    // or ||
+    //productTable.filter( product => (product.brand_id === brandId && product.price >= price)).result
+
+    productTable
+        .filter( product => (product.brand_id === brandId || product.price >= price))
+          .drop(offset) // skip first few records
+          .take(limit) // LIMIT 10
+        .result
+
+    // productTable.filter( product => (product.brand_id  === brandId && product.price > price)).result
     // productTable.filter( product => (product.brand_id  === brandId && product.price > 100)
     //                    || (product.price > 1000)).result
      //                    || (product.price > 1000)).result
@@ -113,15 +125,18 @@ class ProductRepository @Inject() (dbConfigProvider: DatabaseConfigProvider)(imp
     // productTable.filter( product => (product.brand_id  === brandId)).result
   }
 
+
+  // {products: [], totalProducts: 100, hasNextPage: true/false}
+
   def  findAll2(brandId: Long, price: Int,  offset: Int, limit: Int ): Future[PaginatedProductResult] = db.run{
 
       for {
-        products <-  productTable.filter( product => (product.brand_id  === brandId && product.price > price))
+        products <-  productTable.filter( product => (product.brand_id  === brandId || product.price > price))
           .sortBy(_.price)
           .drop(offset).take(limit)
           .result
 
-        totalProducts <- productTable.filter(product => (product.brand_id  === brandId && product.price > price)).length.result
+        totalProducts <- productTable.filter(product => (product.brand_id  === brandId || product.price > price)).length.result
       } yield PaginatedProductResult(
         totalCount = totalProducts,
         products = products.toList,

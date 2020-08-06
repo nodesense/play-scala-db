@@ -44,11 +44,32 @@ insert into "brands" ("id","name", "year") values (4,'Brand 4', 2013);
 insert into "brands" ("id","name", "year") values (5,'Brand 5', 2014);
 
 
-insert into "products" ("id", "name",   "price", "brand_id") values (1, 'Product 1', 2010, 1);
-insert into "products" ("id", "name",  "price", "brand_id") values (2, 'Product 2', 2011, 1);
-insert into "products" ("id", "name",  "price", "brand_id") values (3,'Product 3', 2012, 1);
-insert into "products" ("id", "name",  "price", "brand_id") values (4, 'Product 4', 2013, 1);
-insert into "products" ("id", "name",  "price", "brand_id") values (5, 'Product 5', 2014, 1);
+insert into "products" ("id", "name",   "price", "brand_id") values (1, 'Product 1', 100, 1);
+insert into "products" ("id", "name",  "price", "brand_id") values (2, 'Product 2', 200, 1);
+insert into "products" ("id", "name",  "price", "brand_id") values (3,'Product 3', 300, 1);
+insert into "products" ("id", "name",  "price", "brand_id") values (4, 'Product 4', 350, 1);
+insert into "products" ("id", "name",  "price", "brand_id") values (5, 'Product 5', 450, 1);
+
+
+insert into "products" ("id", "name",   "price", "brand_id") values (6, 'Product 1', 2010, 2);
+insert into "products" ("id", "name",  "price", "brand_id") values (7, 'Product 2', 2011, 2);
+insert into "products" ("id", "name",  "price", "brand_id") values (8,'Product 3', 2012, 2);
+insert into "products" ("id", "name",  "price", "brand_id") values (9, 'Product 4', 2013, 2);
+insert into "products" ("id", "name",  "price", "brand_id") values (10, 'Product 5', 2014, 2);
+
+insert into "products" ("id", "name",   "price", "brand_id") values (11, 'Product 1', 10100, 3);
+insert into "products" ("id", "name",  "price", "brand_id") values (12, 'Product 2', 21011, 3);
+insert into "products" ("id", "name",  "price", "brand_id") values (13,'Product 3', 20112, 3);
+insert into "products" ("id", "name",  "price", "brand_id") values (14, 'Product 4', 21013, 3);
+insert into "products" ("id", "name",  "price", "brand_id") values (15, 'Product 5', 21014, 3);
+
+insert into "products" ("id", "name",   "price", "brand_id") values (16, 'Product 1', 50100, 4);
+insert into "products" ("id", "name",  "price", "brand_id") values (17, 'Product 2', 50100, 4);
+insert into "products" ("id", "name",  "price", "brand_id") values (18,'Product 3', 50100, 4);
+insert into "products" ("id", "name",  "price", "brand_id") values (19, 'Product 4', 50100, 4);
+insert into "products" ("id", "name",  "price", "brand_id") values (20, 'Product 5', 50100, 4);
+
+
 
 insert into "reviews" ("id", "title",   "body") values (1, 'Product 1', 'good product');
 insert into "reviews" ("id", "title",   "body") values (2, 'Product 1', 'value for money');
