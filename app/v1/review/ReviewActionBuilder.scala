@@ -91,6 +91,8 @@ class ReviewActionBuilder @Inject()(messagesApi: MessagesApi,
  * This is a good way to minimize the surface area exposed to the controller, so the
  * controller only has to have one thing injected.
  */
+
+// if a controller need DI, about 10 Objects to be injected
 case class ReviewControllerComponents @Inject()(
                                                reviewActionBuilder: ReviewActionBuilder,
                                                reviewResourceHandler: ReviewResourceHandler,
@@ -99,6 +101,7 @@ case class ReviewControllerComponents @Inject()(
                                                messagesApi: MessagesApi,
                                                langs: Langs,
                                                fileMimeTypes: FileMimeTypes,
+
                                                executionContext: scala.concurrent.ExecutionContext)
   extends ControllerComponents
 

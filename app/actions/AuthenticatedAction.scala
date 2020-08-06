@@ -17,7 +17,13 @@ class AuthenticatedAction @Inject() (parser: BodyParsers.Default)(implicit ec: E
 
   override def invokeBlock[A](request: Request[A], block: (Request[A]) => Future[Result]) = {
 
+    // request ?username=scala&password=play
+    // Header [APP_KEY]
+    // Authorization Bearer/JWT/BASIC
+
     val optionalCredentialsTuple = parseUserCredentials(request)
+    //_1 usernmae
+    //_2 is password
     optionalCredentialsTuple.map { credentials =>
       block(new actions.AuthenticatedRequest(credentials._1, credentials._2, request))
     } getOrElse Future.successful( Result(
@@ -27,7 +33,9 @@ class AuthenticatedAction @Inject() (parser: BodyParsers.Default)(implicit ec: E
   }
 
   def parseUserCredentials(request: RequestHeader): Option[(String, String)] = {
-    Some(("test", "krish"))
+    // None // forbidden
+    Some(("test", "krish")) // invoke the action
+
     //    val query = request.queryString.map { case(k, v) => k -> v.mkString }
     //    for {
     //      user <- query.get("username")

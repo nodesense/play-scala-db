@@ -16,7 +16,12 @@ GET     /statusCode                 controllers.HomeController.statusCode
 GET     /result                     controllers.HomeController.result
 GET     /comingSoon                 controllers.HomeController.comingSoon
 
+
+GET     /authenticated                 controllers.HomeController.authenticated
+
 GET     /logAction                 controllers.HomeController.logAction
+
+
 POST     /submit                    controllers.HomeController.submit
 POST     /checkout                  controllers.CheckoutController.checkout
 GET     /page/:id                   controllers.HomeController.servePage(id: String)
@@ -59,6 +64,8 @@ GET /sayHello/:name                          controllers.ActorController.sayHell
 GET /getConfig                          controllers.ActorController.getConfig
 GET /getConfigParent                          controllers.ActorController.getConfigParent
 
+# -> means any VERB, GET, POST, DELETE etc
+# goes to router first, then routed to controller
 ->         /v1/reviews               v1.review.ReviewRouter
 
 # Map static resources from the /public folder to the /assets URL path

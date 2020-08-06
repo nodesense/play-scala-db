@@ -1,6 +1,6 @@
 package controllers
 
-import actions.LoggingAction
+import actions.{AuthenticatedAction, LoggingAction}
 import javax.inject._
 import play.api._
 import play.api.http.HttpEntity
@@ -11,7 +11,9 @@ import play.api.mvc._
  * application's home page.
  */
 @Singleton
-class HomeController @Inject()(loggingAction: LoggingAction, val controllerComponents: ControllerComponents) extends BaseController  with Logging {
+class HomeController @Inject()(loggingAction: LoggingAction,
+                               authenticatedAction: AuthenticatedAction,
+                               val controllerComponents: ControllerComponents) extends BaseController  with Logging {
 
   /**
    * Create an Action to render an HTML page.
@@ -93,8 +95,16 @@ class HomeController @Inject()(loggingAction: LoggingAction, val controllerCompo
     Ok("Hello World")
   }
 
+  //POST /submit
+  //  some text
+  // content-type: text/plain
   def submit = loggingAction(parse.text) { request =>
      logger.warn("Welcome submit***")
      Ok("Got a body " + request.body.length + " bytes long")
   }
+
+  def authenticated = authenticatedAction {
+    Ok("I am the right user")
+  }
+
 }

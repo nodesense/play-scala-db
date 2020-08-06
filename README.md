@@ -92,3 +92,11 @@ Router
      
 ERROR HANDLER
 Module
+
+
+How to extend ControllerComponents
+how to extends the Action
+how to extend ActionBuilder
+how to extend the context
+how to extend modules
+hwo to use actors

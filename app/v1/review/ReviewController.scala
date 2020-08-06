@@ -14,6 +14,7 @@ case class ReviewFormInput(title: String, body: String)
 /**
  * Takes HTTP requests and produces JSON.
  */
+//ReviewControllerComponents can have more DI objects
 class ReviewController @Inject()(cc: ReviewControllerComponents)(
   implicit ec: ExecutionContext)
   extends ReviewBaseController(cc) {

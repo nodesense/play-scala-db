@@ -7,7 +7,6 @@ import play.api.Configuration
 case object GetConfig;
 
 object ConfiguredActor {
-
 }
 
 class   ConfiguredActor @Inject() (configuration: Configuration) extends Actor {
@@ -15,6 +14,8 @@ class   ConfiguredActor @Inject() (configuration: Configuration) extends Actor {
 
   val config = configuration.getOptional[String]("my.config").getOrElse("none")
 
+  // invoked from ActorController
+  // getConfig route/action
   def receive = {
     case GetConfig =>
       sender() ! config

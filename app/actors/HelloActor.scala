@@ -8,6 +8,7 @@ case class SayHello(name: String)
 // untyped actor, receive any messages, no compilation error
 // if message not processed, it goes to case _, may be unnoticed
 class HelloActor  extends  Actor {
+  println("***Creating helloActor")
   def receive = {
     // this actor respond back to the sender
     // for the ask query
